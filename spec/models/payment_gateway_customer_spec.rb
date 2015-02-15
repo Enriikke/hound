@@ -81,7 +81,7 @@ describe PaymentGatewayCustomer do
       payment_gateway_customer = PaymentGatewayCustomer.new(user)
       customer = payment_gateway_customer.customer
 
-      expect(customer).to be customer
+      expect(customer).to be payment_gateway_customer.customer
     end
   end
 end
