@@ -54,6 +54,30 @@ describe ActivationsController, "#create" do
           with(repo: repo, github_token: token)
       end
     end
+
+    it "tracks failed activation" do
+      membership = create(:membership)
+      repo = membership.repo
+      activator = double(
+        :repo_activator,
+        activate: false,
+        errors: []
+      ).as_null_object
+      allow(RepoActivator).to receive(:new).and_return(activator)
+      stub_sign_in(membership.user)
+
+      post :create, repo_id: repo.id, format: :json
+
+      expect(analytics).to have_tracked("Repo Activation Failed").
+        for_user(membership.user).
+        with(
+          properties: {
+            name: repo.full_github_name,
+            private: false,
+            revenue: 0,
+          }
+        )
+    end
   end
 
   context "when repo is not public" do
