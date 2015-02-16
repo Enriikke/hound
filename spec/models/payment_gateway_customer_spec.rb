@@ -41,8 +41,7 @@ describe PaymentGatewayCustomer do
 
     context "when a customer does not have a card in stripe" do
       it "returns a null object" do
-        user = build_stubbed :user, stripe_customer_id: nil
-
+        user = build_stubbed(:user, stripe_customer_id: nil)
         payment_gateway_customer = PaymentGatewayCustomer.new(user)
 
         expect(payment_gateway_customer.card_last4).to eq ""
