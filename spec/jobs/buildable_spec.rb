@@ -43,7 +43,7 @@ describe Buildable do
       TestJob.perform(payload_data)
 
       expect(Raven).to have_received(:capture_exception).
-        with(exception, { payload: { data: payload_data }})
+        with(exception, payload: { data: payload_data })
     end
   end
 end

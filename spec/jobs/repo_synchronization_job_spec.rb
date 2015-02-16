@@ -73,7 +73,7 @@ describe RepoSynchronizationJob do
       RepoSynchronizationJob.perform(user.id, github_token)
 
       expect(Raven).to have_received(:capture_exception).
-        with(exception, { user: { id: user.id }})
+        with(exception, user: { id: user.id })
     end
   end
 end

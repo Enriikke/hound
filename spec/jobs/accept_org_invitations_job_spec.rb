@@ -25,8 +25,6 @@ describe AcceptOrgInvitationsJob do
   end
 
   it "sends the exception to Sentry" do
-    user = create(:user, refreshing_repos: true)
-    github_token = "token"
     exception = StandardError.new("hola")
     github = double("GithubApi")
     allow(GithubApi).to receive(:new).and_return(github)
