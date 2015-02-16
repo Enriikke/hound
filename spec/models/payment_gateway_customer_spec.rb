@@ -16,8 +16,8 @@ describe PaymentGatewayCustomer do
   end
 
   describe "#email" do
-    it "will return customer email" do
-      user = build_stubbed :user, stripe_customer_id: stripe_customer_id
+    it "returns customer email" do
+      user = build_stubbed(:user, stripe_customer_id: stripe_customer_id)
       stub_customer_find_request
 
       payment_gateway_customer = PaymentGatewayCustomer.new(user)
@@ -30,7 +30,7 @@ describe PaymentGatewayCustomer do
   describe "#card_last4" do
     context "when a customer has a card in stripe" do
       it "returns last 4 from the customers card" do
-        user = build_stubbed :user, stripe_customer_id: stripe_customer_id
+        user = build_stubbed(:user, stripe_customer_id: stripe_customer_id)
         stub_customer_find_request
 
         payment_gateway_customer = PaymentGatewayCustomer.new(user)
@@ -53,7 +53,7 @@ describe PaymentGatewayCustomer do
   describe "#customer" do
     context "when stripe_customer_id is present" do
       it "retrieve customer data" do
-        user = build_stubbed :user, stripe_customer_id: stripe_customer_id
+        user = build_stubbed(:user, stripe_customer_id: stripe_customer_id)
         stub_customer_find_request
 
         payment_gateway_customer = PaymentGatewayCustomer.new(user)
@@ -64,7 +64,7 @@ describe PaymentGatewayCustomer do
 
     context "when stripe_customer_id is not present" do
       it "return null object" do
-        user = build_stubbed :user, stripe_customer_id: nil
+        user = build_stubbed(:user, stripe_customer_id: nil)
 
         payment_gateway_customer = PaymentGatewayCustomer.new(user)
         customer = payment_gateway_customer.customer
@@ -76,7 +76,7 @@ describe PaymentGatewayCustomer do
     end
 
     it "is memoized" do
-      user = build_stubbed :user, stripe_customer_id: nil
+      user = build_stubbed(:user, stripe_customer_id: nil)
 
       payment_gateway_customer = PaymentGatewayCustomer.new(user)
       customer = payment_gateway_customer.customer
