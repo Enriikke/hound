@@ -40,7 +40,7 @@ describe ActivationsController, "#create" do
           "RepoActivator",
           activate: false,
           errors: [error_message]
-        ).as_null_object
+        )
         allow(RepoActivator).to receive(:new).and_return(activator)
         stub_sign_in(membership.user, token)
 
@@ -62,7 +62,7 @@ describe ActivationsController, "#create" do
         "RepoActivator",
         activate: false,
         errors: []
-      ).as_null_object
+      )
       allow(RepoActivator).to receive(:new).and_return(activator)
       stub_sign_in(membership.user)
 
