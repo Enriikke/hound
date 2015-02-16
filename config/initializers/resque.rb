@@ -24,4 +24,4 @@ Resque.after_fork do
   defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
 end
 
-Resque::Plugins::Timeout.timeout = ENV["RESQUE_TIMEOUT"]
+Resque::Plugins::Timeout.timeout = (ENV["RESQUE_TIMEOUT"] || 60).to_i
