@@ -15,8 +15,7 @@ class Analytics
       event: "Repo Activation Failed",
       properties: {
         name: repo.full_github_name,
-        private: repo.private,
-        revenue: -repo.plan_price,
+        private: repo.private
       }
     )
   end

@@ -73,8 +73,7 @@ describe ActivationsController, "#create" do
         with(
           properties: {
             name: repo.full_github_name,
-            private: false,
-            revenue: 0,
+            private: false
           }
         )
     end
