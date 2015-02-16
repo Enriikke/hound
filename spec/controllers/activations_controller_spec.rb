@@ -6,7 +6,7 @@ describe ActivationsController, "#create" do
       token = "sometoken"
       membership = create(:membership)
       repo = membership.repo
-      activator = double(:repo_activator, activate: true, errors: [])
+      activator = double("RepoActivator", activate: true, errors: [])
       allow(RepoActivator).to receive(:new).and_return(activator)
       stub_sign_in(membership.user, token)
 
@@ -37,7 +37,7 @@ describe ActivationsController, "#create" do
         repo = membership.repo
         error_message = "You must be an admin to add a team membership"
         activator = double(
-          :repo_activator,
+          "RepoActivator",
           activate: false,
           errors: [error_message]
         ).as_null_object
@@ -59,7 +59,7 @@ describe ActivationsController, "#create" do
       membership = create(:membership)
       repo = membership.repo
       activator = double(
-        :repo_activator,
+        "RepoActivator",
         activate: false,
         errors: []
       ).as_null_object
@@ -85,7 +85,7 @@ describe ActivationsController, "#create" do
       repo = create(:repo, private: true)
       user = create(:user)
       user.repos << repo
-      activator = double(:repo_activator, activate: false)
+      activator = double("RepoActivator", activate: false)
       allow(RepoActivator).to receive(:new).and_return(activator)
       stub_sign_in(user)
 
